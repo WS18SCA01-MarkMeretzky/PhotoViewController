@@ -59,7 +59,6 @@ class ViewController: UIViewController {
                 print("Either no data was returned, or data was not properly decoded.");   //p. 866
                 completion(nil);
             }
-            
         }
         
         task.resume();
@@ -72,7 +71,6 @@ class ViewController: UIViewController {
         mirror.children.forEach {
             textView.text! += "\($0.label!): \($0.value)\n";
         }
-        
     }
 
 }
