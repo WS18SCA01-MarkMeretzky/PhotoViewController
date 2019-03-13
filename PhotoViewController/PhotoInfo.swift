@@ -14,7 +14,7 @@ struct PhotoInfo: Codable {   //p. 855
     var date: Date;
     var mediaType: String;
     var url: URL;
-    var hdUrl: URL;   //high definition
+    var hdUrl: URL?;   //high definition
     var serviceVersion: String;
     var copyright: String?;
     
@@ -36,7 +36,7 @@ struct PhotoInfo: Codable {   //p. 855
         description    = try  valueContainer.decode(String.self, forKey: CodingKeys.description);
         mediaType      = try  valueContainer.decode(String.self, forKey: CodingKeys.mediaType);
         url            = try  valueContainer.decode(URL.self,    forKey: CodingKeys.url);
-        hdUrl          = try  valueContainer.decode(URL.self,    forKey: CodingKeys.hdUrl);
+        hdUrl          = try? valueContainer.decode(URL.self,    forKey: CodingKeys.hdUrl);
         serviceVersion = try  valueContainer.decode(String.self, forKey: CodingKeys.serviceVersion);
         copyright      = try? valueContainer.decode(String.self, forKey: CodingKeys.copyright);
         
