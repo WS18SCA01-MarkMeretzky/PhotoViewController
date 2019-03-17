@@ -45,10 +45,14 @@ class ViewController: UIViewController {
         let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) {(data: Data?, response: URLResponse?, error: Error?) in
             if let error: Error = error {
                 print("error = \(error)");
+                completion(nil);
+                return;
             }
             
             guard let data: Data = data else {
-                fatalError("Data is nil");
+                print("Data is nil");
+                completion(nil);
+                return;
             }
             
             let jsonDecoder: JSONDecoder = JSONDecoder();
@@ -72,5 +76,20 @@ class ViewController: UIViewController {
             textView.text! += "\($0.label!): \($0.value)\n";
         }
     }
+    
+    /*
+    // I could also have written updateUI(with:) this way:
+    
+    func updateUI(with photoInfo: PhotoInfo) {
+        textView.text! += "title: \(photoInfo.title)\n";
+        textView.text! += "description: \(photoInfo.description)\n";
+        textView.text! += "date: \(photoInfo.date)\n";
+        textView.text! += "mediaType: \(photoInfo.mediaType)\n";
+        textView.text! += "url: \(photoInfo.url)\n";
+        textView.text! += "hdUrl: \(photoInfo.hdUrl?)\n";
+        textView.text! += "serviceVersion: \(photoInfo.serviceVersion)\n";
+        textView.text! += "copyright: \(photoInfo.copyright?)\n";
+    }
+    */
 
 }
