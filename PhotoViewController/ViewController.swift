@@ -31,7 +31,9 @@ class ViewController: UIViewController {
     func fetchPhotoInfo(completion: @escaping (PhotoInfo?) -> Void) {   //p. 867
         //Astronomy Picture of The Day
         guard let baseURL: URL = URL(string: "https://api.nasa.gov/planetary/apod") else {
-            fatalError("could not create baseURL");
+            print("could not create baseURL");
+            completion(nil);
+            return;
         }
         
         let query: [String: String] = [
@@ -39,7 +41,9 @@ class ViewController: UIViewController {
         ];
         
         guard let url: URL = baseURL.withQueries(query) else {
-            fatalError("could not create URL");
+            print("could not create URL");
+            completion(nil);
+            return;
         }
         
         let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) {(data: Data?, response: URLResponse?, error: Error?) in
